@@ -1,0 +1,11 @@
+{
+  "DATABRICKS_CONFIG_PROFILE": "DATAENGINEERING",
+  "EXECUTION_ENVIRONMENT": "databricks",
+
+  "raw_input_file": "abfss://datos@cursosparkucm.dfs.core.windows.net/flights-jan-apr-2018.csv",
+
+  "raw_ingestion_date": "",
+
+  "bronze_table": "master_pvi001_dbr_premium.bronze.flights",
+  "silver_table": "master_pvi001_dbr_premium.silver.flights"
+}
