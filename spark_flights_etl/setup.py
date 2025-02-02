@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(
-    name="spark_flights_etl",
+    name="spark-flights-etl",
     version="0.1.0",
     author="Master Data Engineering UCM",
     author_email="alumno@ucm.es",
