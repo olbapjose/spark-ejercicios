@@ -22,7 +22,7 @@ class Launcher:
 
         self.spark = DatabricksSession.builder.getOrCreate() \
             if self.properties["EXECUTION_ENVIRONMENT"] == "databricks"\
-            else SparkSession.builder.getOrCreate
+            else SparkSession.builder.getOrCreate()
 
     def flujo_diario(self):
         flujo_diario = FlujoDiario(self.spark, self.properties)

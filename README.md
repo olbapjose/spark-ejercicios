@@ -10,7 +10,18 @@ semana, para que el destino de los datos transformados sean tablas de Databricks
 * Modificar en el fichero JSON de configuración la propiedad `raw_input_file` que contiene la ruta del fichero CSV 
 de vuelos, para adecuarse al nombre de tu contenedor de ADLS.
 * Modificar también `DATABRICKS_PROFILE` para adecuarlo al perfil que hayas puesto en tu fichero `.databrickscfg` 
-
+* Completar el método `preprocesa` de la clase `Featurizer`, que recibe un DF y devuelve un nuevo DF preprocesado:
+  * Reemplaza los nulos por 0 en las columnas CarrierDelay, WeatherDelay, NASDelay, SecurityDelay, LateAircraftDelay.
+  * Convertir la columna Diverted en booleana, traduciendo el 0.0 al valor False, y cualquier otro valor, al valor True.
+  * Crear una nueva columnan FlightTs (timestamp) que contenga el instante de salida del vuelo como timestamp, lo cual
+  incluye la fecha (columna FlightDate) y la hora (hora local en el aeropuerto de salida). Hay varias maneras de
+  conseguir esto, aunque es importante evitar usar una UDF.
+    * Crear un test unitario del método `preprocesa`. Para ello, tendrás que crear un nuevo entorno virtual que no
+    tenga instalado databricks-connect, sino pyspark==3.5.0 (misma versión del DBR 15.4 que usamos en el cluster),
+    y configurarlo para usarlo en el test. Necesitarás instalar el paquete pytest que hay en el requirements.txt. En
+    el test, debes crear un DF de juguete con las condiciones de un DF sin procesar, y comprobar que se ha llevado a
+    cabo correctamente el preprocesamiento y que los valores del DF resultante son correctos.
+* Crear un featurizer e invocar a `preprocesa` en el flujo diario.
 
 ## Segunda semana: creación de databases y guardado en bronze y silver
 
